@@ -23,15 +23,19 @@ public class ItemManager : MonoBehaviour {
 		if (count > 0)
 			gameController.SendMessage ("On" + itemCode + "ButtonClick", SendMessageOptions.DontRequireReceiver);
 		else{
+            /*
 			gameController.SendMessage ("PauseGame", SendMessageOptions.DontRequireReceiver);
 			androidManager.GetComponent<AndroidManager>().androidParam = itemCode;
 			androidManager.SendMessage("SendMsgToAndroid", SendMessageOptions.DontRequireReceiver);
+            */
 		}
 	}
 
 	void SetItemCountLabel(){
 		count = PlayerPrefs.GetInt (itemCode);
-		if (count == 0){
+        itemCount.text = count.ToString();
+        /*
+        if (count == 0){
 			itemCount.text = "";
 			saleTag.SetActive(true);
 		}
@@ -39,6 +43,7 @@ public class ItemManager : MonoBehaviour {
 			itemCount.text = count.ToString();
 			saleTag.SetActive(false);
 		}
+        */
 	}
 	
 	void ItemBought(string code){

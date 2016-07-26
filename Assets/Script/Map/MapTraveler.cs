@@ -11,8 +11,8 @@ public class MapTraveler : MonoBehaviour {
 	private Vector3 dragorigin;
 	private Vector2 velocity;
 	
-	private float minResolution = 0.55f;
-	private float maxResolution = 1.1f;
+	private float minResolution = 0.85f;
+	private float maxResolution = 1.65f;
 
 	[HideInInspector]
 	public float currentResolution;

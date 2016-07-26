@@ -51,10 +51,10 @@ public class AudioKeeper : MonoBehaviour {
 		mainBGM = (AudioClip) Resources.Load ("Sound/BGM/MainBGM1",typeof(AudioClip));
 
 		if (PlayerPrefs.HasKey ("Sound") && PlayerPrefs.GetInt ("Sound") == 0) {
-			audio.mute = true;
+			GetComponent<AudioSource>().mute = true;
 		}
-		audio.clip = mainBGM;
-		audio.Play ();
+		GetComponent<AudioSource>().clip = mainBGM;
+		GetComponent<AudioSource>().Play ();
 		waterBGM = 	(AudioClip) Resources.Load ("Sound/BGM/WaterBGM",typeof(AudioClip));
 		successBGM = (AudioClip) Resources.Load ("Sound/BGM/Success",typeof(AudioClip));;
 		failBGM = (AudioClip) Resources.Load ("Sound/BGM/Fail",typeof(AudioClip));;
@@ -87,29 +87,29 @@ public class AudioKeeper : MonoBehaviour {
 	}
 
 	public void PauseBGM(){
-		audio.Pause ();
+		GetComponent<AudioSource>().Pause ();
 	}
 
 	public void ResumeBGM(){
-		audio.Play ();
+		GetComponent<AudioSource>().Play ();
 	}
 
 
 	public void PlayBGM(string name){
 		AudioClip temp = (AudioClip) this.GetType ().GetField (name).GetValue (this);
-		audio.clip = temp;
-		audio.Play ();
+		GetComponent<AudioSource>().clip = temp;
+		GetComponent<AudioSource>().Play ();
 	}
 
 	public void PlayBGM(AudioClip temp){
-		audio.clip = temp;
-		audio.Play ();
+		GetComponent<AudioSource>().clip = temp;
+		GetComponent<AudioSource>().Play ();
 	}
 
 	public void PlayEffectsound(string name){
 		if (PlayerPrefs.HasKey ("Effect") && PlayerPrefs.GetInt ("Effect") == 0) return;
 		AudioClip temp = (AudioClip)this.GetType ().GetField (name).GetValue (this);
-		effectManager.audio.PlayOneShot (temp);
+		effectManager.GetComponent<AudioSource>().PlayOneShot (temp);
 	}
 
 	public void PlayEffectsound(string name, float time){
@@ -120,12 +120,12 @@ public class AudioKeeper : MonoBehaviour {
 
 	IEnumerator PlayEffectsoundDelay(AudioClip clip, float time){
 		yield return new WaitForSeconds (time);
-		effectManager.audio.PlayOneShot (clip);
+		effectManager.GetComponent<AudioSource>().PlayOneShot (clip);
 	}
 
 	public void PlayEffectsound(AudioClip temp){
 		if (PlayerPrefs.HasKey ("Effect") && PlayerPrefs.GetInt ("Effect") == 0) return;
-		effectManager.audio.PlayOneShot (temp);
+		effectManager.GetComponent<AudioSource>().PlayOneShot (temp);
 	}
 
 

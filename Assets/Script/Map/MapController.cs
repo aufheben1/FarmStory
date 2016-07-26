@@ -20,7 +20,7 @@ public class MapController : MonoBehaviour {
 		if (isWindowOn) return;
 		isWindowOn = true;
 		if (!PlayerPrefs.HasKey ("Effect") || PlayerPrefs.GetInt ("Effect") == 1) {
-			audio.PlayOneShot (buttonEffectSound);
+			GetComponent<AudioSource>().PlayOneShot (buttonEffectSound);
 		}
 		if (!heartManager.IsEmpty ()) {
 			missionWindow.SetActive (true);

@@ -418,7 +418,7 @@ public class GameController : MonoBehaviour {
 					startTile = new Vector2(i,j);
 					tempTile = (GameObject)Instantiate (prefabKeeper.startAnim[(int)stageInfo.startTile.z]);
 					Destroy ((GameObject)Instantiate (prefabKeeper.emptyTile, GetCoordinate (i,j,1),transform.rotation), 0.5f);
-					tempTile.renderer.material.color = tC;
+					tempTile.GetComponent<Renderer>().material.color = tC;
 					StartCoroutine(RestoreColor(tempTile));
 					iTween.MoveTo (tempTile,iTween.Hash ("position", GetCoordinate(i,j,1),"time",0.5f,"easetype", iTween.EaseType.easeOutQuart));
 					Destroy (tile[i,j].gameObject);
@@ -432,7 +432,7 @@ public class GameController : MonoBehaviour {
 							tempX = k;
 					tempTile = (GameObject)Instantiate (prefabKeeper.endAnim[tempX]);
 					Destroy ((GameObject)Instantiate (prefabKeeper.emptyTile, GetCoordinate (i,j,1),transform.rotation), 0.5f);
-					tempTile.renderer.material.color = tC;
+					tempTile.GetComponent<Renderer>().material.color = tC;
 					StartCoroutine(RestoreColor(tempTile));
 					iTween.MoveTo (tempTile,iTween.Hash ("position", GetCoordinate(i,j,1),"time",0.5f,"easetype", iTween.EaseType.easeOutQuart));
 					//tempTile = (GameObject)Instantiate (prefabKeeper.endAnim[k], GetCoordinate(i,j,1), transform.rotation);
@@ -497,7 +497,7 @@ public class GameController : MonoBehaviour {
 	IEnumerator RestoreColor(GameObject obj){
 		yield return new WaitForSeconds (0.5f);
 		//Color tC = Color.black;
-		obj.renderer.material.color = Color.white;
+		obj.GetComponent<Renderer>().material.color = Color.white;
 	}
 	
 	int GetSumWeight(){
@@ -1799,7 +1799,7 @@ public class GameController : MonoBehaviour {
 	
 	IEnumerator FailByConnection(int tX, int tY, int dir){
 		isGameStop = true;
-		audioKeeper.audio.Pause();
+		audioKeeper.GetComponent<AudioSource>().Pause();
 
 		Destroy (arrow);
 		GameObject tempObj;
@@ -1834,7 +1834,7 @@ public class GameController : MonoBehaviour {
 	
 	IEnumerator FailByMission(int tX, int tY, int dir){
 		isGameStop = true;
-		audioKeeper.audio.Pause();
+		audioKeeper.GetComponent<AudioSource>().Pause();
 		GameObject tempObj;
 		audioKeeper.PlayEffectsound ("waterExplosion");
 		audioKeeper.PlayEffectsound ("fail");
@@ -2074,11 +2074,11 @@ public class GameController : MonoBehaviour {
 	} 
 	
 	void ChangeColor(GameObject obj, Vector3 rgbColor){
-		Color tempColor = obj.renderer.material.color;
+		Color tempColor = obj.GetComponent<Renderer>().material.color;
 		tempColor.r = rgbColor.x;
 		tempColor.g = rgbColor.y;
 		tempColor.b = rgbColor.z;
-		obj.renderer.material.color = tempColor;
+		obj.GetComponent<Renderer>().material.color = tempColor;
 	}
 
 	void AddScore(int score){

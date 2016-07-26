@@ -6,7 +6,7 @@ public class TitleTemp : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (!(PlayerPrefs.HasKey ("Effect") && PlayerPrefs.GetInt ("Effect") == 0)) 
-			audio.mute = false;
+			GetComponent<AudioSource>().mute = false;
 		StartCoroutine (GoMain ());
 	}
 

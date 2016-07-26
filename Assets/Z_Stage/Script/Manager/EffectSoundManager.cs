@@ -5,7 +5,7 @@ public class EffectSoundManager : MonoBehaviour {
 	
 	public void PlayEffectSound(AudioClip source){
 		if (PlayerPrefs.HasKey ("Effect") && PlayerPrefs.GetInt ("Effect") == 0) return;
-		audio.PlayOneShot (source);
+		GetComponent<AudioSource>().PlayOneShot (source);
 	}
 
 	public void PlayEffectSound(AudioClip source, float delay){
@@ -15,12 +15,12 @@ public class EffectSoundManager : MonoBehaviour {
 
 	IEnumerator PlayEffectSoundDelay(AudioClip source, float delay){
 		yield return new WaitForSeconds (delay);
-		audio.PlayOneShot (source);
+		GetComponent<AudioSource>().PlayOneShot (source);
 	}
 	
 	public void RandomEffectSound(AudioClip[] clipList){
 		if (PlayerPrefs.HasKey ("Effect") && PlayerPrefs.GetInt ("Effect") == 0) return;
 		int i = Random.Range (0, clipList.Length);
-		audio.PlayOneShot (clipList [i]);
+		GetComponent<AudioSource>().PlayOneShot (clipList [i]);
 	}
 }

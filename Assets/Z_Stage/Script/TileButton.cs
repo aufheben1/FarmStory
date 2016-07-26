@@ -62,7 +62,7 @@ public class TileButton : MonoBehaviour {
 		}
 		else
 		{
-			Renderer ren = tweenTarget.renderer;
+			Renderer ren = tweenTarget.GetComponent<Renderer>();
 			
 			if (ren != null)
 			{
@@ -70,7 +70,7 @@ public class TileButton : MonoBehaviour {
 			}
 			else
 			{
-				Light lt = tweenTarget.light;
+				Light lt = tweenTarget.GetComponent<Light>();
 				
 				if (lt != null)
 				{

@@ -21,7 +21,7 @@ public class MapInitialize : MonoBehaviour {
 
         //사운드 옵션에 따라 배경음악 키고 끄기
 		if (!PlayerPrefs.HasKey ("Sound") || PlayerPrefs.GetInt ("Sound") == 1) {
-			GameObject.FindWithTag("SoundSource").audio.mute = false;
+			GameObject.FindWithTag("SoundSource").GetComponent<AudioSource>().mute = false;
 		}
 	}
 

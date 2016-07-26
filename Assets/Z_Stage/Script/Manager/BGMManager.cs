@@ -5,23 +5,23 @@ public class BGMManager : MonoBehaviour {
 
 	void Start(){
 		if (!PlayerPrefs.HasKey ("Sound") || PlayerPrefs.GetInt ("Sound") == 1)
-			audio.mute = false;
+			GetComponent<AudioSource>().mute = false;
 	}
 
 	public void SetMute(bool token){
-		audio.mute = token;
+		GetComponent<AudioSource>().mute = token;
 	}
 
 	public void PauseBGM(){
-		audio.Pause ();
+		GetComponent<AudioSource>().Pause ();
 	}
 
 	public void ResumeBGM(){
-		audio.Play ();
+		GetComponent<AudioSource>().Play ();
 	}
 
 	public void PlayBGM(AudioClip source){
-		audio.clip = source;
-		audio.Play ();
+		GetComponent<AudioSource>().clip = source;
+		GetComponent<AudioSource>().Play ();
 	}
 }

@@ -54,11 +54,11 @@ public class MapTraveler : MonoBehaviour {
 
         //경계를 벗어났을 경우 clamp
         panel.transform.localPosition = new Vector3(
-            Mathf.Clamp(panel.transform.localPosition.x, -(1920 - 400 * currentResolution), (1920 - 400 * currentResolution)),
-            Mathf.Clamp(panel.transform.localPosition.y, -(3115 - 200 * currentResolution), (3115 - 200 * currentResolution)),
+            Mathf.Clamp(panel.transform.localPosition.x, -(1920 - 650 * currentResolution), (1920 - 650 * currentResolution)),
+            Mathf.Clamp(panel.transform.localPosition.y, -(3115 - 400 * currentResolution), (3115 - 400 * currentResolution)),
             0);
 
-        if (currentResolution > maxResolution){
+		if (currentResolution > maxResolution){
 			currentResolution -= 0.01f;
 			mainCamera.orthographicSize -=  0.01f;
 		}

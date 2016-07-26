@@ -11,15 +11,11 @@ public class ItemManager : MonoBehaviour {
 	private int count;
 
 	void Start(){
-		PlayerPrefs.Save ();
-		if (!PlayerPrefs.HasKey (itemCode)) {
-			PlayerPrefs.SetInt (itemCode, 3);
-			PlayerPrefs.Save ();
-			SetItemCountLabel ();
-		}
-		else{
-			SetItemCountLabel ();
-		}
+
+        PlayerPrefs.SetInt(itemCode, 3);
+        PlayerPrefs.Save();
+        SetItemCountLabel ();
+		
 		this.count = PlayerPrefs.GetInt (itemCode);
 	}
 

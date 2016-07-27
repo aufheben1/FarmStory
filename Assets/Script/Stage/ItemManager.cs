@@ -11,7 +11,7 @@ public class ItemManager : MonoBehaviour {
 	private int count;
 
 	void Start(){
-
+        saleTag.SetActive(false);
         PlayerPrefs.SetInt(itemCode, 3);
         PlayerPrefs.Save();
         SetItemCountLabel ();

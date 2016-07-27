@@ -8,12 +8,14 @@ public class SetOptionEnable : MonoBehaviour {
 	
 	void Start () {
 		SetStopsign ();
-	}
+    }
 
 	void SetStopsign(){
-		if (PlayerPrefs.HasKey (optionName) && PlayerPrefs.GetInt (optionName) == 0)
-			stopSign.SetActive (true);
-		else
-			stopSign.SetActive (false);
+        if (PlayerPrefs.GetInt(optionName) == 0)
+        {
+            stopSign.SetActive(true);
+        }
+        else
+            stopSign.SetActive(false);
 	}
 }

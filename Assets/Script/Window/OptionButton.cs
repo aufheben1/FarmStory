@@ -79,17 +79,26 @@ public class OptionButton : MonoBehaviour {
 
     void SetOption(string code)
     {
+        int b = 0;
         if (!PlayerPrefs.HasKey(code))
+        {
+            //0 = false
             PlayerPrefs.SetInt(code, 0);
+            b = 0;
+        }
         else
         {
-            PlayerPrefs.SetInt(code, (PlayerPrefs.GetInt(code) + 1) % 2);
+            b = PlayerPrefs.GetInt(code);
+            b = (b + 1) % 2;
+            PlayerPrefs.SetInt(code, b);
         }
+
         PlayerPrefs.Save();
 
         if (code == "Sound")
         {
-            GameObject.FindWithTag("SoundSource").GetComponent<AudioSource>().mute= !GameObject.FindWithTag("SoundSource").GetComponent<AudioSource>().mute;
+            GameObject.FindWithTag("SoundSource").GetComponent<AudioSource>().mute = b == 1 ? false : true;
+                //!GameObject.FindWithTag("SoundSource").GetComponent<AudioSource>().mute;
         }
         
     }

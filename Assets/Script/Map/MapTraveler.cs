@@ -18,7 +18,12 @@ public class MapTraveler : MonoBehaviour {
 	public float currentResolution;
 
 	void Start(){
-		currentResolution = mainCamera.orthographicSize;
+        float ratio = 720 / (float)Screen.height;
+        mainCamera.orthographicSize *= ratio;
+        currentResolution = mainCamera.orthographicSize;
+        minResolution *= ratio;
+        maxResolution *= ratio;
+
 	}
 
 

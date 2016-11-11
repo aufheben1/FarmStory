@@ -647,8 +647,18 @@ public class StageMainController : MonoBehaviour {
 		processing = false;
 		objectManager.itemButton [3].SendMessage ("ItemUsed", SendMessageOptions.DontRequireReceiver);
 	}
+    bool touchable = true;
+
+    IEnumerator touchModeChange()
+    {
+        yield return new WaitForSeconds(0.5f);
+        touchable = true;
+    }
 
 	void ChangeTouchMode(TouchMode mode){
+        if (!touchable) return;
+        touchable = false;
+        StartCoroutine(touchModeChange());
 		//터치모드 변경
 		switch (touchMode){
 		//현재 터치모드에 따라 아이템 버튼의 색상 변경
@@ -669,7 +679,7 @@ public class StageMainController : MonoBehaviour {
 		switch (mode) {
 		//변경될 터치모드에 따라 버튼 색상 변경
 		case TouchMode.Hammer :
-			objectManager.hammerCover.SetActive(true);
+            objectManager.hammerCover.SetActive(true);
 			break;
 		case TouchMode.Obstacle :
 			objectManager.obstacleCover.SetActive(true);

@@ -17,6 +17,8 @@ public class MapTraveler : MonoBehaviour {
 	[HideInInspector]
 	public float currentResolution;
 
+    private float xBound;
+    private float yBound;
 	void Start(){
         float ratio = 720 / (float)Screen.height;
         mainCamera.orthographicSize *= ratio;
@@ -24,8 +26,26 @@ public class MapTraveler : MonoBehaviour {
         minResolution *= ratio;
         maxResolution *= ratio;
 
+        if (Screen.height < 500)
+        {
+            xBound = 399;
+            yBound = 248;
+        }
+        else
+        {
+            xBound = 650;
+            yBound = 400;
+        }
+
 	}
 
+    public Vector2 ClampPosition(float x, float y)
+    {
+        return new Vector3(
+            Mathf.Clamp(x, -(1920 - xBound * currentResolution), (1920 - xBound * currentResolution)),
+            Mathf.Clamp(y, -(3115 - yBound * currentResolution), (3115 - yBound * currentResolution)),
+            0);
+    }
 
 	void Update () {
         //다른 창이 켜져있을 경우 동작하지 않음
@@ -58,10 +78,7 @@ public class MapTraveler : MonoBehaviour {
 		velocity *= 0.9f;
 
         //경계를 벗어났을 경우 clamp
-        panel.transform.localPosition = new Vector3(
-            Mathf.Clamp(panel.transform.localPosition.x, -(1920 - 650 * currentResolution), (1920 - 650 * currentResolution)),
-            Mathf.Clamp(panel.transform.localPosition.y, -(3115 - 400 * currentResolution), (3115 - 400 * currentResolution)),
-            0);
+        panel.transform.localPosition = ClampPosition(panel.transform.localPosition.x, panel.transform.localPosition.y);
 
 		if (currentResolution > maxResolution){
 			currentResolution -= 0.01f;

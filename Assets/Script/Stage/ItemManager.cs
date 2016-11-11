@@ -20,7 +20,7 @@ public class ItemManager : MonoBehaviour {
 	}
 
 	void OnButtonClick(){
-		if (count > 0)
+        if (count > 0)
 			gameController.SendMessage ("On" + itemCode + "ButtonClick", SendMessageOptions.DontRequireReceiver);
 		else{
             /*

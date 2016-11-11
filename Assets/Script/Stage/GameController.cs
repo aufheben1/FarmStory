@@ -965,7 +965,18 @@ public class GameController : MonoBehaviour {
 		
 	}
 
+    bool tiletouchable = true;
+
+    IEnumerator tileTouchControl()
+    {
+        yield return new WaitForSeconds(0.1f);
+        tiletouchable = true;
+    }
+
 	void OnTileMouseUpAsButton(Vector2 vec){
+        if (!tiletouchable) return;
+        tiletouchable = false;
+        StartCoroutine(tileTouchControl());
 		if (isGameStop) return;
 		int vX = (int)vec.x;
 		int vY = (int)vec.y;

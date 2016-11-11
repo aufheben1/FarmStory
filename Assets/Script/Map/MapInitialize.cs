@@ -107,10 +107,13 @@ public class MapInitialize : MonoBehaviour {
 			landmark.transform.parent = GameObject.Find("Level " + depart.ToString()).transform;
 			landmark.transform.localPosition = Vector3.zero;
 			Vector2 buttonPos = GameObject.Find("Level " + depart.ToString()).transform.localPosition;
-			mapPanel.transform.localPosition = -new Vector3(
-				Mathf.Clamp (buttonPos.x, -(1920 - 960 * currentResolution), (1920 - 960 * currentResolution)),
-				Mathf.Clamp (buttonPos.y, -(3115 - 540 * currentResolution), (3115 - 540 * currentResolution)),
-				0);
+
+            mapPanel.transform.localPosition = GetComponent<MapTraveler>().ClampPosition(-buttonPos.x, -buttonPos.y);
+            //mapPanel.transform.localPosition = -new Vector3(
+				//Mathf.Clamp (buttonPos.x, -(1920 - 960 * currentResolution), (1920 - 960 * currentResolution)),
+				//Mathf.Clamp (buttonPos.y, -(3115 - 540 * currentResolution), (3115 - 540 * currentResolution)),
+				//0);
+
 			StartCoroutine(NewSection(stageNum, accumeNum, sectionNum));
 			return;
 		}
@@ -118,10 +121,13 @@ public class MapInitialize : MonoBehaviour {
 			landmark.transform.parent = GameObject.Find("Level " + maxStage.ToString()).transform;
 			landmark.transform.localPosition = Vector3.zero;
 			Vector2 buttonPos = GameObject.Find("Level " + depart.ToString()).transform.localPosition;
-			mapPanel.transform.localPosition = -new Vector3(
-				Mathf.Clamp (buttonPos.x, -(1920 - 960 * currentResolution), (1920 - 960 * currentResolution)),
-				Mathf.Clamp (buttonPos.y, -(3115 - 540 * currentResolution), (3115 - 540 * currentResolution)),
-				0);
+
+            mapPanel.transform.localPosition = GetComponent<MapTraveler>().ClampPosition(-buttonPos.x, -buttonPos.y);
+
+            //mapPanel.transform.localPosition = -new Vector3(
+//				Mathf.Clamp (buttonPos.x, -(1920 - 960 * currentResolution), (1920 - 960 * currentResolution)),
+				//Mathf.Clamp (buttonPos.y, -(3115 - 540 * currentResolution), (3115 - 540 * currentResolution)),
+				//0);
 		}
 			
 		if (depart != destination) {
@@ -148,10 +154,11 @@ public class MapInitialize : MonoBehaviour {
 	IEnumerator SlideMap(GameObject panel, int destination, int maxStage){
 		GameObject desButton = GameObject.Find ("Level " + destination.ToString ());
 		float currentResolution = GetComponent<MapTraveler> ().currentResolution;
-		Vector3 destinationPosition = new Vector3 (
-			Mathf.Clamp (-desButton.transform.localPosition.x, -(1920 - 960 * currentResolution) ,(1920 - 960 * currentResolution)),
-			Mathf.Clamp (-desButton.transform.localPosition.y, -(3115 - 540 * currentResolution),(3115 - 540 * currentResolution)),
-			0);
+        Vector3 destinationPosition = GetComponent<MapTraveler>().ClampPosition(-desButton.transform.localPosition.x, -desButton.transform.localPosition.y);
+            //new Vector3 (
+			//Mathf.Clamp (-desButton.transform.localPosition.x, -(1920 - 960 * currentResolution) ,(1920 - 960 * currentResolution)),
+			//Mathf.Clamp (-desButton.transform.localPosition.y, -(3115 - 540 * currentResolution),(3115 - 540 * currentResolution)),
+			//0);
 
 		float waitingTime = 1.5f;
 
@@ -190,10 +197,12 @@ public class MapInitialize : MonoBehaviour {
         GameObject desButton = GameObject.Find("Level " + currentStage.ToString());
         float currentResolution = GetComponent<MapTraveler>().currentResolution;
 
-        Vector3 destinationPosition = new Vector3(
-            Mathf.Clamp(-desButton.transform.localPosition.x, -(1920 - 960 * currentResolution), (1920 - 960 * currentResolution)),
-            Mathf.Clamp(-desButton.transform.localPosition.y, -(3115 - 540 * currentResolution), (3115 - 540 * currentResolution)),
-            0);
+
+        Vector3 destinationPosition = GetComponent<MapTraveler>().ClampPosition(-desButton.transform.localPosition.x, -desButton.transform.localPosition.y);
+        //new Vector3(
+            //Mathf.Clamp(-desButton.transform.localPosition.x, -(1920 - 960 * currentResolution), (1920 - 960 * currentResolution)),
+            //Mathf.Clamp(-desButton.transform.localPosition.y, -(3115 - 540 * currentResolution), (3115 - 540 * currentResolution)),
+            //0);
 
         float waitingTime = 1.5f;
 
